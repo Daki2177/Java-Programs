@@ -2,25 +2,72 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        Scanner output = new Scanner(System.in);
-        Scanner string = new Scanner(System.in);
+            Patient patient = new Patient("Dakalo", 24,
+                    new Eye("Left eye", "Short sighted","Black"),
+                    new Eye("Right eye", "Normal", "Black"),
+                    new Heart("Heart", "Normal", 65),
+                    new Stomach("Stomach", "PUD", true),
+                    new Skin("Skin", "Burnt"));
 
-        System.out.println("Enter first number: ");
-        int num1 = output.nextInt();
+            System.out.println("Name: " + patient.getName());
+            System.out.println("Age: " + patient.getAge());
 
-        System.out.println("Enter second number: ");
-        int num2 = output.nextInt();
+        boolean shouldfinish = false;
+        while(!shouldfinish){
 
-        System.out.println("Enter operator: ");
-        String operator = string.nextLine();
+            System.out.println("\n\t1. Left eye" +
+                    "\n\t2. Right eye" +
+                    "\n\t3. Heart" +
+                    "\n\t4. Stomach" +
+                    "\n\t5. Skin" +
+                    "\n\t6. Quit");
 
-        switch (operator) {
-            case "+" -> System.out.println(num1 + num2);
-            case "-" -> System.out.println(num1 - num2);
-            case "*" -> System.out.println(num1 * num2);
-            case "/" -> System.out.print(num1 / num2);
-            default -> System.out.print("Invalid operator");
+            Scanner input = new Scanner(System.in);
+            int choice = input.nextInt();
+
+            switch (choice) {
+
+                case 1:
+
+                    patient.getLeftEye().Details();
+                    break;
+
+                case 2:
+
+                    patient.getRightEye().Details();
+                    break;
+
+                case 3:
+                    patient.getHeart().Details();
+
+                    Scanner rate = new Scanner(System.in);
+                    System.out.println("Enter new heart rate");
+
+                    int newRate = rate.nextInt();
+
+                    System.out.println("New heart rate" + newRate);
+
+                    break;
+
+                case 4:
+                    patient.getStomach().Details();
+                    break;
+
+                case 5:
+
+                    patient.getSkin().Details();
+                    break;
+
+                default:
+                    shouldfinish = true;
+                    break;
+
+
+            }
+
+
+        }
+
         }
 
     }
-}
